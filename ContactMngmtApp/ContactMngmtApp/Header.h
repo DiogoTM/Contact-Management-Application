@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-
+//Necessary Structures
 struct Address
 {
 	int strNum;
@@ -22,21 +22,13 @@ struct Contact
 	Date meetDate;
 };
 
+//Function prototypes
 
-static void loadContact(Contact[], const int);
-static void loadContact(Contact *, Contact *);
-
-static void displayContact(Contact[], const int);
-static void displayContact(Contact *, Contact*);
-
-static void displaySingleContact(Contact[], int);
+void loadContact(Contact *, Contact *);
+void displayContacts(Contact *, Contact*);
+void searchContact(Contact *, Contact*, int);
+bool exit_app();
 
 
-
-static void searchContact(Contact[], const int, int);
-static void searchContact(Contact *, int);
-
-static void searchContact(Contact[], const int, string);
-static void searchContact(Contact[], string);
 
 

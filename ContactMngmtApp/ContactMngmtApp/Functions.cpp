@@ -1,145 +1,86 @@
 #include "Header.h"
 
-static void loadContact(Contact array_contacts[], const int size)
+
+//Overloading operators to display the object of type Contact
+
+ostream & operator <<(ostream & out_stream, Contact &a_contact)
 {
-	for (int i = 0; i < size; i++)
+	out_stream << "\n=================================";
+	out_stream << "\nContact information: ";
+	out_stream << "\n=================================";
+
+	out_stream << "\nFirst Name: " << a_contact.fname;
+	out_stream << "\nLast Name: " << a_contact.lname;
+	out_stream << "\nCompany Name: " << a_contact.company;
+	out_stream << "\nPhone Number: " << a_contact.phNum;
+	out_stream << "\nFax Number: " << a_contact.faxNum;
+	out_stream << "\nMeeting Date: " << a_contact.meetDate.day << "/" <<
+		a_contact.meetDate.month << "/" << a_contact.meetDate.year << endl;
+	return out_stream;
+}
+
+istream & operator >> (istream & in_stream, Contact &a_contact)
+{
+	cout << "\nPlease insert the contact information:";
+	cout << "\nFirst Name: ";
+	in_stream.ignore();
+	getline(in_stream, a_contact.fname);
+	cout << "\nLast Name: ";
+	in_stream.ignore();
+	getline(in_stream, a_contact.lname);
+	cout << "\nCompany Name: ";
+	in_stream.ignore();
+	getline(in_stream, a_contact.company);
+	cout << "\nPhone Number: ";
+	in_stream >> a_contact.phNum;
+	cout << "\nFax Number: ";
+	in_stream >> a_contact.faxNum;
+	cout << "\nMeeting Date: " << "\nDay: ";
+	in_stream >> a_contact.meetDate.day;
+	cout << "\nMonth: ";
+	in_stream >> a_contact.meetDate.month;
+	cout << "\nYear: ";
+	in_stream >> a_contact.meetDate.year;
+	return in_stream;
+}
+
+
+
+//Functions
+void loadContact(Contact * pf, Contact * pl)
+{
+	for (Contact *ptr = pf; ptr <= pl; ptr++)
 	{
-		array_contacts[i].contNum = i + 1;
-		cout << "Please insert the contact information:";
-		cout << "/nFirst Name: ";
-		cin.ignore;
-		getline(cin, array_contacts[i].fname);
-		cout << "/nLast Name: ";
-		cin.ignore;
-		getline(cin, array_contacts[i].lname);
-		cout << "/nCompany Name: ";
-		cin.ignore;
-		getline(cin, array_contacts[i].company);
-		cout << "/nPhone Number: ";
-		cin >> array_contacts[i].phNum;
-		cout << "/nFax Number: ";
-		cin >> array_contacts[i].faxNum;
-		cout << "/nMeeting Date: " << "/nDay: ";
-		cin >> array_contacts[i].meetDate.day;
-		cout << "/nMonth: ";
-		cin >> array_contacts[i].meetDate.month;
-		cout << "/nYear: ";
-		cin >> array_contacts[i].meetDate.year;
+		ptr->contNum = pl - pf + 1;
+		cin >> *ptr;
+	}
+
+}
+
+void displayContacts(Contact * pf, Contact * pl)
+{
+	for (Contact *ptr = pf; ptr <= pl; ptr++)
+	{
+		cout<< *ptr;
 	}
 }
 
-static void loadContact(Contact * ptr_first, Contact * ptr_last)
+bool exit_app()
 {
-	for (Contact *ptr = ptr_first; ptr <= ptr_last; ptr++)
+	char exit;
+	cout << "\n\nAre you sure you want to EXIT the program (Y/N)? ";
+	cin >> exit;
+	if (toupper(exit) == 'Y')
 	{
-		ptr->contNum = (ptr - ptr_first) + 1;
-		cout << "Please insert the contact information:";
-		cout << "/nFirst Name: ";
-		cin.ignore;
-		getline(cin, ptr->fname);
-		cout << "/nLast Name: ";
-		cin.ignore;
-		getline(cin, ptr->lname);
-		cout << "/nCompany Name: ";
-		cin.ignore;
-		getline(cin, ptr->company);
-		cout << "/nPhone Number: ";
-		cin >> ptr->phNum;
-		cout << "/nFax Number: ";
-		cin >> ptr->faxNum;
-		cout << "/nMeeting Date: " << "/nDay: ";
-		cin >> ptr->meetDate.day;
-		cout << "/nMonth: ";
-		cin >> ptr->meetDate.month;
-		cout << "/nYear: ";
-		cin >> ptr->meetDate.year;
+		return true;
+	}
+	else if (toupper(exit) == 'N')
+	{
+		return false;
+	}
+	else
+	{
+		cout << "\n\nPlease enter a valid choice.";
+		return exit_app();
 	}
 }
-
-static void displayContact(Contact array_contacts[], const int size)
-{
-	for (int i = 0; i < size; i++)
-	{
-		cout << "/nContact information: ";
-		cout << "/nFirst Name: " << array_contacts[i].fname;
-		cout << "/nLast Name: " << array_contacts[i].lname;
-		cout << "/nCompany Name: " << array_contacts[i].company;
-		cout << "/nPhone Number: " << array_contacts[i].phNum;
-		cout << "/nFax Number: " << array_contacts[i].faxNum;
-		cout << "/nMeeting Date: " << array_contacts[i].meetDate.day << "/" <<
-			array_contacts[i].meetDate.month << "/" << array_contacts[i].meetDate.year;
-	}
-}
-
-static void displayContact(Contact array_contacts[], const int size)
-{
-	for (int i = 0; i < size; i++)
-	{
-		cout << "/nContact information: ";
-		cout << "/nFirst Name: " << array_contacts[i].fname;
-		cout << "/nLast Name: " << array_contacts[i].lname;
-		cout << "/nCompany Name: " << array_contacts[i].company;
-		cout << "/nPhone Number: " << array_contacts[i].phNum;
-		cout << "/nFax Number: " << array_contacts[i].faxNum;
-		cout << "/nMeeting Date: " << array_contacts[i].meetDate.day << "/" <<
-			array_contacts[i].meetDate.month << "/" << array_contacts[i].meetDate.year;
-	}
-}
-
-static void displaySingleContact(Contact array_contacts[], int i)
-{
-	cout << "/nContact information: ";
-	cout << "/nFirst Name: " << array_contacts[i].fname;
-	cout << "/nLast Name: " << array_contacts[i].lname;
-	cout << "/nCompany Name: " << array_contacts[i].company;
-	cout << "/nPhone Number: " << array_contacts[i].phNum;
-	cout << "/nFax Number: " << array_contacts[i].faxNum;
-	cout << "/nMeeting Date: " << array_contacts[i].meetDate.day << "/" <<
-		array_contacts[i].meetDate.month << "/" << array_contacts[i].meetDate.year;
-}
-
-static void searchContact(Contact array_contacts[], const int size, int searchNum)
-{
-	for (int i = 0; i < size; i++)
-	{
-		if (array_contacts[i].contNum == searchNum)
-		{
-			cout << "Contact found: ";
-			displaySingleContact(array_contacts, i);
-		}
-	}
-}
-static void searchContact(Contact array_contacts[], const int size, int searchNum)
-{
-	bool found;
-	for (int i = 0; i < size; i++)
-	{
-		if (array_contacts[i].contNum == searchNum)
-		{
-			cout << "Contact found: ";
-			found = true;
-			displaySingleContact(array_contacts, i);
-		}
-	}
-	if (!found)
-	{
-		cout << "Contact not found!";
-	}
-}
-
-static void searchContact(Contact array_contacts[], const int size, string searchName)
-{
-	bool found;
-	for (int i = 0; i < size; i++)
-	{
-		if ((array_contacts[i].fname == searchName) || ((array_contacts[i].lname == searchName)))
-		{
-			cout << "Contact found: ";
-			found = true;
-			displaySingleContact(array_contacts, i);
-		}
-	}
-	if (!found)
-	{
-		cout << "Contact not found!";
-	}
