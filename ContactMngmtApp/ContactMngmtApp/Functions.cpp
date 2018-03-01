@@ -64,7 +64,37 @@ void displayContacts(Contact * pf, Contact * pl)
 		cout<< *ptr;
 	}
 }
+void sortContacts(Contact * array_contacts[], int max)
+{
+	for (int i = 0; i < max; i++)
+	{
+		for (int j = 0; j < max; j++)
+		{
+			if (array_contacts[i]->contNum > array_contacts[j]->contNum)
+			{
+				Contact temp = *array_contacts[i];
+				*array_contacts[i] = *array_contacts[j];
+				*array_contacts[j] = temp;
+			}
+		}
+	}
+}
 
+void sortContacts(Contact * array_contacts[], int max)
+{
+	for (int i = 0; i < max; i++)
+	{
+		for (int j = 0; j < max; j++)
+		{
+			if (array_contacts[i]->company > array_contacts[j]->company)
+			{
+				Contact temp = *array_contacts[i];
+				*array_contacts[i] = *array_contacts[j];
+				*array_contacts[j] = temp;
+			}
+		}
+	}
+}
 bool exit_app()
 {
 	char exit;

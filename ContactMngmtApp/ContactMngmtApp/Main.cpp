@@ -2,7 +2,7 @@
 
 //Template to search 
 template<class T>
-T sortContact(Contact * pf, Contact * pl, T search)
+T searchContact(Contact * pf, Contact * pl, T search)
 {
 	bool found;
 	for (Contact *ptr = pf; ptr <= pl; ptr++)
@@ -39,7 +39,6 @@ int main()
 	pl = &array_contacts[max - 1];
 
 	cout << "\n\tThank you, now please make your choice:" << endl;
-
 	do
 	{
 		cout << "\nMain Menu:" << endl;
