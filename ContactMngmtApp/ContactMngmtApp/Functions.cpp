@@ -114,7 +114,7 @@ void sortContactsContNum(Contact *pf, Contact *pl)
 	{
 		for (Contact *j = i+1; j <= pl; j++)
 		{
-			if (i->phNum > j->phNum)
+			if (i->contNum > j->contNum)
 			{
 				Contact temp = *i;
 				*i = *j;
