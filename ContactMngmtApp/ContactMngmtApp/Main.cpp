@@ -1,6 +1,21 @@
 #include "Header.h"
 
-//Template to search 
+/*
+Contact Management Application
+
+Author: Diogo Machado
+Submitted to teacher Houria Houmel (420-P45-AS DATA STRUCTURE: C++)
+Date: 01/03/2018
+Version 1.0
+
+Application that creates an array of contacts according to the user's input.
+Size and content is defined in run-time.
+
+
+
+*/
+
+
 
 int main()
 

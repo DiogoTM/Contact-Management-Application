@@ -28,7 +28,7 @@ struct Contact
 void loadContact(Contact *, Contact *);
 void displayContacts(Contact *, Contact*);
 void searchContact(Contact *, Contact *, int );
-void searchContact(Contact *, Contact *, string );
+void searchContact(Contact *, Contact *, string);
 void sortContactsContNum(Contact *, Contact *);
 void sortContactsCompany(Contact *, Contact *);
 bool exit_app();
