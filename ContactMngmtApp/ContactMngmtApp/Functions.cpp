@@ -46,6 +46,8 @@ istream & operator >> (istream & in_stream, Contact &a_contact)
 	return in_stream;
 }
 
+
+
 //Functions
 //Function do load/add contacts
 void loadContact(Contact * pf, Contact * pl)
@@ -68,45 +70,45 @@ void displayContacts(Contact * pf, Contact * pl)
 }
 
 //Function to search contacts by int (Contact number)
-void searchContact(Contact * pf, Contact * pl, int search)
-{
-	bool found = false;
-	for (Contact *ptr = pf; ptr <= pl; ptr++)
-	{
-		if (ptr->contNum == search)
-		{
-			cout << "Contact found: ";
-			found = true;
-			cout << *ptr;
-			break;
-		}
-		found = false;
-	}
-	if (!found)
-	{
-		cout << "Contact not found!";
-	}
-}
+//void searchContact(Contact * pf, Contact * pl, int search)
+//{
+//	bool found = false;
+//	for (Contact *ptr = pf; ptr <= pl; ptr++)
+//	{
+//		if (ptr->contNum == search)
+//		{
+//			cout << "Contact found: ";
+//			found = true;
+//			cout << *ptr;
+//			break;
+//		}
+//		found = false;
+//	}
+//	if (!found)
+//	{
+//		cout << "Contact not found!";
+//	}
+//}
 //Overloaded function to search contact by string (first name and last name)
-void searchContact(Contact * pf, Contact * pl, string search)
-{
-	bool found = false;
-	for (Contact *ptr = pf; ptr <= pl; ptr++)
-	{
-		if (ptr->fname == search || ptr->lname == search || (ptr->fname + " " + ptr->lname) == search)
-		{
-			cout << "Contact found: ";
-			found = true;
-			cout << *ptr;
-			break;
-		}
-		found = false;
-	}
-	if (!found)
-	{
-		cout << "Contact not found!";
-	}
-}
+//void searchContact(Contact * pf, Contact * pl, string search)
+//{
+//	bool found = false;
+//	for (Contact *ptr = pf; ptr <= pl; ptr++)
+//	{
+//		if (ptr->fname == search || ptr->lname == search || (ptr->fname + " " + ptr->lname) == search)
+//		{
+//			cout << "Contact found: ";
+//			found = true;
+//			cout << *ptr;
+//			break;
+//		}
+//		found = false;
+//	}
+//	if (!found)
+//	{
+//		cout << "Contact not found!";
+//	}
+//}
 
 //Function to sort contacts by contact number.
 void sortContactsContNum(Contact *pf, Contact *pl)

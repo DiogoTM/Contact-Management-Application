@@ -6,17 +6,33 @@ Contact Management Application
 Author: Diogo Machado
 Submitted to teacher Houria Houmel (420-P45-AS DATA STRUCTURE: C++)
 Date: 01/03/2018
-Version 1.0
+Version 1.2
 
 Application that creates an array of contacts according to the user's input.
 Size and content is defined in run-time.
-
-
-
 */
 
 
-
+template<class T>
+void searchContact(Contact * pf, Contact * pl, T search)
+{
+	bool found = false;
+	for (Contact *ptr = pf; ptr <= pl; ptr++)
+	{
+		if (ptr->fname == search || ptr->lname == search || (ptr->fname + " " + ptr->lname) == search)
+		{
+			cout << "Contact found: ";
+			found = true;
+			cout << *ptr;
+			break;
+		}
+		found = false;
+	}
+	if (!found)
+	{
+		cout << "Contact not found!";
+	}
+};
 int main()
 
 {
@@ -69,12 +85,12 @@ int main()
 			case 1:				
 				cout << "Please insert the contact information to search: " << endl;
 				cin >> search_int;
-				searchContact(pf, pl, search_int);
+				searchContact<int>(pf, pl, search_int);
 				break;
 			case 2:
 				cout << "Please insert the contact information to search: " << endl;
 				cin >> search_name;				
-				searchContact(pf, pl, search_name);
+				searchContact<string>(pf, pl, search_name);
 				break;
 			default:
 				cout << "\nPlease make your choice.";
