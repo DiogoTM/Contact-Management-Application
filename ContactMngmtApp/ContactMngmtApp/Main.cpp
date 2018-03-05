@@ -1,4 +1,5 @@
 #include "Header.h"
+#include <typeinfo>
 
 /*
 Contact Management Application
@@ -19,20 +20,33 @@ void searchContact(Contact * pf, Contact * pl, T search)
 	bool found = false;
 	for (Contact *ptr = pf; ptr <= pl; ptr++)
 	{
-		if (ptr->fname == search || ptr->lname == search || (ptr->fname + " " + ptr->lname) == search)
+		if (search is string)
 		{
-			cout << "Contact found: ";
-			found = true;
-			cout << *ptr;
-			break;
+			if ((ptr->fname == search) || (ptr->lname == search))
+			{
+				cout << "Contact found: ";
+				found = true;
+				cout << *ptr;
+				break;
+			}
 		}
-		found = false;
+		else
+		{
+			if ((ptr->contNum == search) || (ptr->contNum == search))
+			{
+				cout << "Contact found: ";
+				found = true;
+				cout << *ptr;
+				break;
+			}
+		}
+		//found = false;
 	}
 	if (!found)
 	{
 		cout << "Contact not found!";
 	}
-};
+}
 int main()
 
 {
