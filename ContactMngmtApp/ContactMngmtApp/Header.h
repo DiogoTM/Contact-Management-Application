@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>	
 
 using namespace std;
 
@@ -25,13 +27,16 @@ struct Contact
 
 //Function prototypes
 
-void loadContact(Contact *, Contact *);
-void displayContacts(Contact *, Contact*);
-void searchContact(Contact *, Contact *, int );
-void searchContact(Contact *, Contact *, string);
-void sortContactsContNum(Contact *, Contact *);
-void sortContactsCompany(Contact *, Contact *);
+void loadContact(vector <Contact>&);
+void displayContacts(vector <Contact>);
+void searchContact(string, vector <Contact>);
+void searchContact(int, vector <Contact>);
+bool sortByNumber(const Contact &, const Contact &);
+bool sortByName(const Contact &, const Contact &);
 bool exit_app();
+ostream & operator <<(ostream &, Contact &);
+istream & operator >> (istream &, Contact &);
+
 
 
 

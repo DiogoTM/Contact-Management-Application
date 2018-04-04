@@ -47,37 +47,57 @@ istream & operator >> (istream & in_stream, Contact &a_contact)
 }
 
 //Functions
-//Function do load/add contacts
-void loadContact(Contact * pf, Contact * pl)
+
+//Function to add Contacts
+void loadContact(vector <Contact>&contact_vector)
 {
-	for (Contact *ptr = pf; ptr <= pl; ptr++)
+	Contact a_contact;
+	bool continue_insert = true;
+	while (continue_insert)
 	{
-		ptr->contNum = ptr-pf+1;
-		cin >> *ptr;
+		cin >> a_contact;
+		a_contact.contNum = contact_vector.size() + 1;
+		contact_vector.push_back(a_contact);
+		char option;
+		cout << "\nDo you want to continue inserting contacts? (Y or N)" << endl;
+		cin >> option;
+
+		if (toupper(option) == 'Y')
+		{
+			continue_insert = true;
+		}
+		else if (toupper(option) == 'N')
+		{
+			continue_insert = false;
+		}
+		else
+		{
+			cout << "\nPlease enter a valid option, Y or N." << endl;
+			cin >> option;
+		}
 	}
 
 }
-
 //Function to display all contacts
-void displayContacts(Contact * pf, Contact * pl)
+void displayContacts(vector <Contact> contact_vector)
 {
-	for (Contact *ptr = pf; ptr <= pl; ptr++)
+	for (int i = 0; i < contact_vector.size(); i++)
 	{
-		cout<< *ptr;
+		cout << contact_vector.at(i) << endl;
 	}
 }
 
 //Function to search contacts by int (Contact number)
-void searchContact(Contact * pf, Contact * pl, int search)
+void searchContact(int search, vector <Contact> contact_vector)
 {
 	bool found = false;
-	for (Contact *ptr = pf; ptr <= pl; ptr++)
+	for (int i = 0; i < contact_vector.size(); i++)
 	{
-		if (ptr->contNum == search)
+		if (contact_vector[i].contNum == search)
 		{
 			cout << "Contact found: ";
 			found = true;
-			cout << *ptr;
+			cout << contact_vector[i];
 			break;
 		}
 		found = false;
@@ -88,16 +108,16 @@ void searchContact(Contact * pf, Contact * pl, int search)
 	}
 }
 //Overloaded function to search contact by string (first name and last name)
-void searchContact(Contact * pf, Contact * pl, string search)
+void searchContact(string search, vector <Contact> contact_vector)
 {
 	bool found = false;
-	for (Contact *ptr = pf; ptr <= pl; ptr++)
+	for (int i = 0; i < contact_vector.size(); i++)
 	{
-		if (ptr->fname == search || ptr->lname == search || (ptr->fname + " " + ptr->lname) == search)
+		if (contact_vector[i].fname == search || contact_vector[i].lname == search)
 		{
 			cout << "Contact found: ";
 			found = true;
-			cout << *ptr;
+			cout << contact_vector[i];
 			break;
 		}
 		found = false;
@@ -109,23 +129,15 @@ void searchContact(Contact * pf, Contact * pl, string search)
 }
 
 //Function to sort contacts by contact number.
-void sortContactsContNum(Contact *pf, Contact *pl)
-{
-	for (Contact *i = pf; i <= pl; i++)
-	{
-		for (Contact *j = i+1; j <= pl; j++)
-		{
-			if (i->contNum > j->contNum)
-			{
-				Contact temp = *i;
-				*i = *j;
-				*j = temp;
-			}
-		}	
-	}
-	cout << "Contacts sorted succesfully!" << endl;
-}
 
+bool sortByNumber(const Contact & cont1, const Contact & cont2)
+{
+	return cont1.contNum < cont2.contNum;
+}
+bool sortByName(const Contact & cont1, const Contact & cont2)
+{
+	return cont1.fname < cont2.fname;
+}
 //Function to sort contacts by company name
 void sortContactsCompany(Contact *pf, Contact *pl)
 {

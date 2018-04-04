@@ -5,16 +5,18 @@ Contact Management Application
 
 Author: Diogo Machado
 Submitted to teacher Houria Houmel (420-P45-AS DATA STRUCTURE: C++)
-Date: 01/03/2018
-Version 1.0
+Date: XX/04/2018
+Version 2.0
 
-Application that creates an array of contacts according to the user's input.
-Size and content is defined in run-time.
-
+Create a vector of contacts and implement the necessary functions to:
+1- add a contact
+2- display all contacts
+3- remove a contact from the vector
+4- search for a contact: use 2 kinds of keys (one should be int value and the other should be string value)
+5- sort contacts: use 2 kinds of keys (one should be int value and the other should be string value)
 
 
 */
-
 
 
 int main()
@@ -25,19 +27,13 @@ int main()
 	int search_int;
 	string search_name;
 	bool exit = false;
+
+	vector<Contact> contact_vect;
+	Contact a_contact;
+
 	cout << "\tWelcome to the Contact Management Application";
 	cout << "\n\t=============================================";
-	cout << "\nBefore we start, how many contacts do you need?" << endl ;
-	cin >> max;
-	cout << "\t=============================================" << endl;
-	Contact * array_contacts = new	Contact[max];
-	Contact *pf, *pl;
-	pf = &array_contacts[0];
-	pl = &array_contacts[max - 1];
-	system("pause");
-	system("cls");
-
-	cout << "\n\tThank you, now please make your choice:" << endl;
+	cout << "\n\tPlease make your choice:" << endl;
 	do
 	{
 		cout << "\nMain Menu:" << endl;
@@ -50,12 +46,11 @@ int main()
 
 		switch (sel_menu)
 		{			
-		case 1:
-			
-			loadContact(pf, pl);			
+		case 1:			
+			loadContact(contact_vect);
 			break;
 		case 2:
-			displayContacts(pf, pl);			
+			displayContacts(contact_vect);		
 			break;
 		case 3:
 			int sel_search;
@@ -69,12 +64,12 @@ int main()
 			case 1:				
 				cout << "Please insert the contact information to search: " << endl;
 				cin >> search_int;
-				searchContact(pf, pl, search_int);
+				searchContact(search_int, contact_vect);
 				break;
 			case 2:
 				cout << "Please insert the contact information to search: " << endl;
 				cin >> search_name;				
-				searchContact(pf, pl, search_name);
+				searchContact(search_name, contact_vect);
 				break;
 			default:
 				cout << "\nPlease make your choice.";
@@ -93,10 +88,10 @@ int main()
 			switch (sel_sort)
 			{
 			case 1:
-				sortContactsContNum(pf,pl);
+				sort(contact_vect.begin(), contact_vect.end(), sortByNumber);
 				break;
 			case 2:
-				sortContactsCompany(pf,pl);
+				sort(contact_vect.begin(), contact_vect.end(), sortByName);
 				break;
 			default:
 				cout << "\nPlease make your choice.";
