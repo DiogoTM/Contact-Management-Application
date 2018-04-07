@@ -38,10 +38,11 @@ int main()
 	{
 		cout << "\nMain Menu:" << endl;
 		cout << "\n1. Create a contact.";
-		cout << "\n2. Display all the contacts.";
-		cout << "\n3. Search for a contact.";
-		cout << "\n4. Sort the contacts.";
-		cout << "\n5. Exit the application." << endl;
+		cout << "\n2. Delete a contact.";
+		cout << "\n3. Display all the contacts.";
+		cout << "\n4. Search for a contact.";
+		cout << "\n5. Sort the contacts.";
+		cout << "\n6. Exit the application." << endl;
 		cin >> sel_menu;
 
 		switch (sel_menu)
@@ -50,13 +51,16 @@ int main()
 			loadContact(contact_vect);
 			break;
 		case 2:
-			displayContacts(contact_vect);		
+			deleteContact(contact_vect);
 			break;
 		case 3:
+			displayContacts(contact_vect);		
+			break;
+		case 4:
 			int sel_search;
 			cout << "\nPlease, select the type of search to be performed: " << endl;
 			cout << "\n1. Search by Contact Number.";
-			cout << "\n2. Search by First Name and Last Name.";
+			cout << "\n2. Search by First Name and Last Name." << endl;
 			cin >> sel_search;
 
 			switch (sel_search)
@@ -79,7 +83,7 @@ int main()
 			}		
 
 			break;
-		case 4:
+		case 5:
 			int sel_sort;
 			cout << "\nPlease, select the type of sort to be performed: " << endl;
 			cout << "\n1. Sort by Contact Number.";
@@ -98,7 +102,7 @@ int main()
 				break;
 			}			
 			break;
-		case 5:
+		case 6:
 			exit = exit_app();
 			if (exit == true)
 			{

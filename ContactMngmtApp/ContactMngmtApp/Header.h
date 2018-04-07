@@ -25,9 +25,24 @@ struct Contact
 	Date meetDate;
 };
 
+struct IsEqual
+{
+	int key;
+	IsEqual() {}
+	IsEqual(int _key)
+	{
+		key = _key;
+	}
+	bool operator () (Contact &a_contact)
+	{
+		return a_contact.contNum == key;
+	}
+};
+
 //Function prototypes
 
 void loadContact(vector <Contact>&);
+void deleteContact(vector <Contact>&);
 void displayContacts(vector <Contact>);
 void searchContact(string, vector <Contact>);
 void searchContact(int, vector <Contact>);

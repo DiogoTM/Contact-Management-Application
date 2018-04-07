@@ -78,6 +78,27 @@ void loadContact(vector <Contact>&contact_vector)
 	}
 
 }
+
+//Function to delete a contact
+void deleteContact(vector <Contact>& contact_vector)
+{
+	int contact_num;
+	cout << "\nPlease enter the contact number to be deleted: " << endl;
+	cin >> contact_num;
+	vector<Contact>::iterator it;
+	it = find_if(contact_vector.begin(), contact_vector.end(), IsEqual(contact_num));
+	if ( it != contact_vector.end())
+	{
+		contact_vector.erase(it);
+		cout << "\nContact removed succesfully!" << endl;		
+	}
+	else
+	{
+		cout << "\nContact not found!" << endl;
+	}
+
+}
+
 //Function to display all contacts
 void displayContacts(vector <Contact> contact_vector)
 {
@@ -91,13 +112,14 @@ void displayContacts(vector <Contact> contact_vector)
 void searchContact(int search, vector <Contact> contact_vector)
 {
 	bool found = false;
+	contact_vector;
 	for (int i = 0; i < contact_vector.size(); i++)
 	{
 		if (contact_vector[i].contNum == search)
 		{
 			cout << "Contact found: ";
 			found = true;
-			cout << contact_vector[i];
+			cout<< contact_vector[i];
 			break;
 		}
 		found = false;
@@ -139,23 +161,6 @@ bool sortByName(const Contact & cont1, const Contact & cont2)
 	return cont1.fname < cont2.fname;
 }
 //Function to sort contacts by company name
-void sortContactsCompany(Contact *pf, Contact *pl)
-{
-	for (Contact *i = pf; i <= pl; i++)
-	{
-		for (Contact *j = i + 1; j <= pl; j++)
-		{
-			if (i->company > j->company)
-			{
-				Contact temp = *i;
-				*i = *j;
-				*j = temp;
-			}
-		}
-	}
-	cout << "Contacts sorted succesfully!" << endl;
-
-}
 
 bool exit_app()
 {
